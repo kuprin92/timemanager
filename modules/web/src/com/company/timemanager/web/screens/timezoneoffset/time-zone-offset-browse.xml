@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://timeZoneOffsetBrowse.caption"
+        focusComponent="timeZoneOffsetsTable"
+        messagesPack="com.company.timemanager.web.screens.timezoneoffset">
+    <data readOnly="true">
+        <collection id="timeZoneOffsetsDc"
+                    class="com.company.timemanager.entity.TimeZoneOffset">
+            <view extends="_local"/>
+            <loader id="timeZoneOffsettsDl">
+                <query>
+                    <![CDATA[select e from timemanager_TimeZoneOffset e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="timeZoneOffsetsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="timeZoneOffsetsTable"
+                dataLoader="timeZoneOffsettsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="timeZoneOffsetsTable"
+                    width="100%"
+                    dataContainer="timeZoneOffsetsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="hour"/>
+                <column id="minute"/>
+                <column id="second"/>
+                <column id="offsetType"/>
+                <column id="getOffset" generator="getOffset" caption="msg://getOffset"/>
+                <column id="currentOffset" generator="currentOffset" caption="msg://currentOffset"/>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="time" generator="time" caption="msg://time"/>
+                <column id="currentTime" generator="currentTime" caption="msg://currentTime"/>
+                <column id="currentUTCOffset" generator="currentUTC" caption="msg://currentUTC"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="timeZoneOffsetsTable.create"/>
+                <button id="editBtn" action="timeZoneOffsetsTable.edit"/>
+                <button id="removeBtn" action="timeZoneOffsetsTable.remove"/>
+                <button id="refreshBtn" action="timeZoneOffsetsTable.refresh"/>
+                <button id="excelBtn" action="timeZoneOffsetsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

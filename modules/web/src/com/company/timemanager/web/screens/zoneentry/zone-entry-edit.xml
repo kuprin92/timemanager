@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://zoneEntryEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.timemanager.web.screens.zoneentry">
+    <data>
+        <instance id="zoneEntryDc"
+                  class="com.company.timemanager.entity.ZoneEntry">
+            <view extends="_local" systemProperties="true">
+                <property name="zoneOffset" view="_local"/>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="zoneEntryDc">
+            <column width="500px">
+                <textField id="nameField" property="name"/>
+                <pickerField id="zoneOffsetField" property="zoneOffset">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="open" type="picker_open"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://zoneEntryBrowse.caption"
+        focusComponent="zoneEntriesTable"
+        messagesPack="com.company.timemanager.web.screens.zoneentry">
+    <data readOnly="true">
+        <collection id="zoneEntriesDc"
+                    class="com.company.timemanager.entity.ZoneEntry">
+            <view extends="_local" systemProperties="true">
+                <property name="zoneOffset" view="_local"/>
+            </view>
+            <loader id="zoneEntriesDl">
+                <query>
+                    <![CDATA[select e from timemanager_ZoneEntry e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="zoneEntriesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="zoneEntriesTable"
+                dataLoader="zoneEntriesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="zoneEntriesTable"
+                    width="100%"
+                    dataContainer="zoneEntriesDc"
+                    presentations="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="zoneOffset.name"/>
+                <column id="zoneOffset.description"/>
+                <column id="zoneOffset.offsetType"/>
+                <column id="zoneOffset.getOffset" generator="getOffset"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="zoneEntriesTable.create"/>
+                <button id="editBtn" action="zoneEntriesTable.edit"/>
+                <button id="removeBtn" action="zoneEntriesTable.remove"/>
+                <button id="refreshBtn" action="zoneEntriesTable.refresh"/>
+                <button id="excelBtn" action="zoneEntriesTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

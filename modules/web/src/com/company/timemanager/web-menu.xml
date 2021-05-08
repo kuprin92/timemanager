@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+
+    <item screen="timemanager_TimeZoneOffset.browse" caption="mainMsg://menu_config.timemanager_TimeZoneOffset.browse"
+          insertBefore="administration" insertAfter="timemanager_ZoneEntry" id="timemanager_TimeZoneOffset"/>
+    <item screen="timemanager_ZoneEntry.browse" caption="mainMsg://menu_config.timemanager_ZoneEntry.browse"
+          insertBefore="administration" id="timemanager_ZoneEntry"/>
+</menu-config>
